@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>בחירת צבע</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/1/1a/Wizard_of_Oz_Wallpaper.jpg'); /* רקע של הקוסם מארץ עוץ */
+            background-size: cover;
+            background-position: center;
+            transition: background-color 0.5s ease;
+            touch-action: manipulation;
+        }
+        .buttons {
+            display: flex;
+            gap: 20px;
+            position: relative;
+            z-index: 10;
+        }
+        button {
+            font-size: 24px;
+            padding: 20px 40px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+        .yellow { background-color: yellow; }
+        .orange { background-color: orange; }
+    </style>
+</head>
+<body onclick="resetColor()">
+    <div id="content">
+        <h1>בחר צבע והחזק את המסך למעלה!</h1>
+        <div class="buttons">
+            <button class="yellow" onclick="changeColor('yellow', event)">צהוב</button>
+            <button class="orange" onclick="changeColor('orange', event)">כתום</button>
+        </div>
+    </div>
+
+    <script>
+        function changeColor(color, event) {
+            event.stopPropagation(); // מונע מהלחיצה להפעיל את האיפוס מיד
+            document.body.style.backgroundColor = color;
+            document.body.style.backgroundImage = 'none'; // מסיר את הרקע של הקוסם מארץ עוץ
+            document.getElementById('content').style.display = 'none'; // מסתיר את הכפתורים והכיתוב
+        }
+        
+        function resetColor() {
+            document.body.style.backgroundColor = '';
+            document.body.style.backgroundImage = "url('https://upload.wikimedia.org/wikipedia/commons/1/1a/Wizard_of_Oz_Wallpaper.jpg')";
+            document.getElementById('content').style.display = 'flex'; // מחזיר את הכפתורים והכיתוב
+        }
+    </script>
+</body>
+</html>
